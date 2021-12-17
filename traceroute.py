@@ -19,7 +19,7 @@ def trace(addr, ttl, max_ttl, type, timeout=2):
     if type == 'icmp':
         reply = sr1(IP(ttl=ttl, dst=addr[0]) / ICMP(), timeout=timeout)
     elif type == 'tcp':
-        reply = sr1(IP(ttl=ttl, dst=addr[0]) / TCP(dport=addr[1]), timeout=timeout)
+        reply = sr1(IP(ttl=ttl, dst=addr[0]) / TCP(dport=addr[1], flags="S"), timeout=timeout)
     else:
         reply = sr1(IP(ttl=ttl, dst=addr[0]) / UDP(dport=addr[1]), timeout=timeout)
     end = time.time()
